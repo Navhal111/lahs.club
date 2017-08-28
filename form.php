@@ -25,7 +25,10 @@ if (isset($_POST['first_name'])) {
 		$query = mysqli_query($connection, "SELECT `email` FROM `users` WHERE `email` = '$email';");
 		if (mysqli_num_rows($query) == 0) {
 			mysqli_query($connection, "INSERT INTO `users` VALUES('$first_name', '$last_name', '$email', '$year');");
+			#no miinig of this line
+			
 			file_get_contents("https://slack.com/api/users.admin.invite?token=$token&email=$email");
+			
 
 			$linux_username = strtolower($first_name . $last_name);
 			$password = generateRandomString(8);
